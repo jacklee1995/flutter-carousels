@@ -6,7 +6,7 @@ A Flutter plug-in aimed at providing various carousel widgets.
 
 - **Author**: [Juncai Li](https://blog.csdn.net/qq_28550263?spm=1011.2415.3001.5343)
 - **Email**: [291148484@163.com](291148484@163.com)
-- **License**: [MIT](http://thispage.tech:9680/jclee1995/flutter_money_display/-/blob/master/LICENSE)
+- **License**: [MIT](http://thispage.tech:9680/jclee1995/flutter-carousels/-/blob/master/LICENSE)
 - Repository: [http://thispage.tech:9680/jclee1995/flutter-carousels](http://thispage.tech:9680/jclee1995/flutter-carousels.git)
 - 中文文档：[http://thispage.tech:9680/jclee1995/flutter-carousels/-/blob/master/README_CN.md](http://thispage.tech:9680/jclee1995/flutter-carousels/-/blob/master/README_CN.md)
 

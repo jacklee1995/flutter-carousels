@@ -6,8 +6,8 @@
 
 - **作者**：[李俊才](https://blog.csdn.net/qq_28550263?spm=1011.2415.3001.5343)
 - **邮箱**：[291148484@163.com](291148484@163.com)
-- **协议**：[MIT](http://thispage.tech:9680/jclee1995/flutter_money_display/-/blob/master/LICENSE)
-- 项目仓库：[http://thispage.tech:9680/jclee1995/flutter_money_display](http://thispage.tech:9680/jclee1995/flutter_money_display.git)
+- **协议**：[MIT](http://thispage.tech:9680/jclee1995/flutter-carousels/-/blob/master/LICENSE)
+- 项目仓库：[http://thispage.tech:9680/jclee1995/flutter-carousels](http://thispage.tech:9680/jclee1995/flutter-carousels.git)
 - English Document: [https://github.com/jacklee1995/flutter-carousels/blob/master/README.md](https://github.com/jacklee1995/flutter-carousels/blob/master/README.md)
 
 ## 开始
