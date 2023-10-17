@@ -30,8 +30,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  awesome_carousel:
-    path: ../
 
 
   # The following adds the Cupertino Icons font to your application.

@@ -629,3 +629,10 @@ Carousel(
 > Added in v1.0.0+1.
 
 See above.
+
+
+### class AssetImgCarousel
+
+> Added in v1.0.0+1.
+
+See above.
