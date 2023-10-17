@@ -273,6 +273,197 @@ class NetworkImageCarouselDemo extends StatelessWidget {
 
 这可以很容易地使用相应地视频播放器模块与本模块集成实现。
 
+### 网络轮播图
+
+网络轮播图是一种特殊但周期网络应用普及的今天十分普片的轮播图，通过包装通用轮播图 `Carousel` 类，从而得到了 `NetImgCarousel` 类。你可以提供一组网络图片的 URL 来加载为网络轮播图，并且可以指定与图片和网络相关的所有参数。
+
+以下是一个使用 NetImgCarousel 类的例子。
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:awesome_carousel/carousels.dart' show NetImgCarousel;
+
+class NetImgCarouselExample extends StatelessWidget {
+  final List<String> imageUrls = [
+    'https://gitee.com/jacklee1995/example-pictures/raw/master/shoe/shoe1(1).png',
+    'https://gitee.com/jacklee1995/example-pictures/raw/master/shoe/shoe1(3).png',
+    'https://gitee.com/jacklee1995/example-pictures/raw/master/shoe/shoe1(5).png',
+    'https://gitee.com/jacklee1995/example-pictures/raw/master/shoe/shoe1(7).png',
+    'https://gitee.com/jacklee1995/example-pictures/raw/master/shoe/shoe1(2).png',
+  ];
+
+  NetImgCarouselExample({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: NetImgCarousel(
+        imageUrls,
+        height: 400.0,
+        indicatorColor: Colors.grey,
+        currentIndicatorColor: Colors.blue,
+        onUnitTapped: (index) {
+          // 轮播单元回调事件
+          print('Tapped on unit $index');
+        },
+        onIndicatorTapped: (index) {
+          // 轮播指示器回调事件
+          print('Tapped on indicator $index');
+        },
+      ),
+    );
+  }
+}
+```
+
+其效果如下：
+
+![Alt text](./WeChat_IxjFbKajq3.gif)
+
+下面的表格描述了`NetImgCarousel`构造函数的参数：
+
+| 参数名                             | 类型                        | 默认值                 | 描述                                        |
+| ---------------------------------- | --------------------------- | ---------------------- | ------------------------------------------- |
+| `imageUrls`                        | `List<String>`              |                        | 要在轮播中显示的网络图片URL列表             |
+| `height`                           | `double`                    | `400.0`                | 轮播组件的高度                              |
+| `width`                            | `double`                    | `0.0`                  | 轮播组件的宽度                              |
+| `useindicator`                     | `bool`                      | `true`                 | 是否使用指示器，默认为 `true`               |
+| `onUnitTapped`                     | `FunctionWithAInt?`         |                        | 当轮播单元被点击时的回调函数，可选          |
+| `onIndicatorTapped`                | `FunctionWithAInt?`         |                        | 当指示器被点击时的回调函数，可选            |
+| `indicatorBuilder`                 | `FunctionIndicatorBuilder?` |                        | 自定义指示器构建函数，可选                  |
+| `indicatorColor`                   | `Color`                     | `Colors.white`         | 默认指示器颜色                              |
+| `currentIndicatorColor`            | `Color`                     | `Colors.blue`          | 当前选中指示器的颜色                        |
+| `indicatorWidth`                   | `double`                    | `40.0`                 | 指示器宽度                                  |
+| `indicatorHeight`                  | `double`                    | `26.0`                 | 指示器高度                                  |
+| `indicatorMargin`                  | `double`                    | `3.0`                  | 指示器之间的间距                            |
+| `indicatorToBottom`                | `double`                    | `10.0`                 | 指示器距离底部的距离                        |
+| `indicatorShape`                   | `BoxShape`                  | `BoxShape.rectangle`   | 默认指示器形状                              |
+| `pageSnapping`                     | `bool`                      | `true`                 | 是否启用页面快速吸附，默认为 `true`。       |
+| `padEnds`                          | `bool`                      | `true`                 | 是否在轮播首尾添加额外的页面，默认为 `true` |
+| `clipBehavior`                     | `Clip`                      | `Clip.hardEdge`        | 剪裁的行为                                  |
+| `reverse`                          | `bool`                      | `false`                | 是否倒序项目的顺序                          |
+| `scrollDirection`                  | `Axis`                      | `Axis.horizontal`      | 页面视图滚动的轴                            |
+| `controller`                       | `CarouselController?`       |                        | 轮播控制器，可选                            |
+| `disableIndicatorDefaultCallbacks` | `bool`                      | `false`                | 是否禁用默认指示器回调函数                  |
+| `imgScale`                         | `double`                    | `1.0`                  | 图片缩放因子，默认为 `1.0`                  |
+| `imgFrameBuilder`                  | `ImageFrameBuilder?`        |                        | 图片帧的构建器，可选                        |
+| `imgLoadingBuilder`                | `ImageLoadingBuilder?`      |                        | 图片加载的构建器，可选                      |
+| `imgErrorBuilder`                  | `ImageErrorWidgetBuilder?`  |                        | 图片错误小部件的构建器，可选                |
+| `imgExcludeFromSemantics`          | `bool`                      | `false`                | 是否排除图像从语义中，默认为 `false`        |
+| `imgSemanticLabel`                 | `String?`                   |                        | 图像的语义标签，可选                        |
+| `imgWidth`                         | `double?`                   |                        | 图像的宽度，可选                            |
+| `imgHeight`                        | `double?`                   |                        | 图像的高度，可选                            |
+| `imgColor`                         | `Color?`                    |                        | 图像的颜色，可选                            |
+| `imgOpacity`                       | `Animation<double>?`        |                        | 图像的不透明度，可选                        |
+| `imgColorBlendMode`                | `BlendMode?`                |                        | 图像颜色的混合模式，可选                    |
+| `imgFit`                           | `BoxFit?`                   |                        | 图像的适应方式，可选                        |
+| `imgCenterSlice`                   | `Rect?`                     |                        | 图像的中心切片，可选                        |
+| `imgAlignment`                     | `AlignmentGeometry`         | `Alignment.center`     | 图像的对齐方式，可选                        |
+| `imgRepeat`                        | `ImageRepeat`               | `ImageRepeat.noRepeat` | 图像的重复模式，可选                        |
+| `imgMatchTextDirection`            | `bool`                      | `false`                | 图像是否匹配文本方向，可选                  |
+| `imgGaplessPlayback`               | `bool`                      | `false`                | 是否启用无缝播放图像，可选                  |
+| `imgFilterQuality`                 | `FilterQuality`             | `FilterQuality.low`    | 图像的滤镜质量，可选                        |
+| `imgIsAntiAlias`                   | `bool`                      | `false`                | 图像是否反锯齿，可选                        |
+| `imgHeaders`                       | `Map<String, String>?`      |                        | 获取图像时的网络请求头，可选。              |
+| `imgCacheWidth`                    | `int?`                      |                        | 图像应该缓存到的宽度，可选                  |
+| `imgCacheHeight`                   | `int?`                      |                        | 图像应该缓存到的高度，可选                  |
+
+### 本地轮播图
+
+> 于 v1.0.0+1 添加。
+
+本地资源图片轮播也是一个很常见的轮播类型。在Flutter中，你需要先配置 pubspec.yaml 文件的 assets 选项，以确保你的图片能够正常地被加载进来。
+
+一个简单的例子如下：
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:awesome_carousel/img_carousels/assert_img_carousel.dart';
+
+class AssetImgCarouselExample extends StatelessWidget {
+  final List<String> assetImagePaths = [
+    'assets/image1.png',
+    'assets/image2.png',
+    'assets/image3.png',
+  ];
+
+  AssetImgCarouselExample({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: AssetImgCarousel(
+        assetImagePaths,
+        height: 400.0,
+        indicatorColor: Colors.grey,
+        currentIndicatorColor: Colors.blue,
+        indicatorShape: BoxShape.circle,
+        onUnitTapped: (index) {
+          print('Tapped on unit $index');
+        },
+        onIndicatorTapped: (index) {
+          print('Tapped on indicator $index');
+        },
+      ),
+    );
+  }
+}
+```
+
+代码的运行效果如下：
+
+![Alt text](./WeChat_wLFeQijQol.gif)
+
+下面的表格描述了`AssetImgCarousel`构造函数的参数：
+
+
+| 参数名称                         | 参数类型                  | 描述                                       |
+| -------------------------------- | ------------------------- | ------------------------------------------ |
+| assetImagePaths                  | List<String>              | 用于轮播的asset图片文件路径列表。          |
+| height                           | double                    | 轮播组件的高度。                           |
+| width                            | double                    | 轮播组件的宽度。                           |
+| useindicator                     | bool                      | 是否使用指示器，默认为true。               |
+| onUnitTapped                     | FunctionWithAInt?         | 当轮播单元被点击时的回调函数，可选。       |
+| onIndicatorTapped                | FunctionWithAInt?         | 当指示器被点击时的回调函数，可选。         |
+| indicatorBuilder                 | FunctionIndicatorBuilder? | 自定义指示器构建函数，可选。               |
+| indicatorColor                   | Color                     | 默认指示器颜色。                           |
+| currentIndicatorColor            | Color                     | 当前选中指示器的颜色。                     |
+| indicatorWidth                   | double                    | 指示器宽度。                               |
+| indicatorHeight                  | double                    | 指示器高度。                               |
+| indicatorMargin                  | double                    | 指示器之间的间距。                         |
+| indicatorToBottom                | double                    | 指示器距离底部的距离。                     |
+| indicatorShape                   | BoxShape                  | 默认指示器形状，默认为矩形。               |
+| pageSnapping                     | bool                      | 是否启用页面快速吸附，默认为true。         |
+| padEnds                          | bool                      | 是否在轮播首尾添加额外的页面，默认为true。 |
+| clipBehavior                     | Clip                      | 剪裁的行为，默认为 Clip.hardEdge。         |
+| reverse                          | bool                      | 是否倒序项目的顺序。                       |
+| scrollDirection                  | Axis                      | 页面视图滚动的轴，默认为 Axis.horizontal。 |
+| controller                       | CarouselController?       | 轮播控制器，可选。                         |
+| disableIndicatorDefaultCallbacks | bool                      | 是否禁用默认指示器回调函数。               |
+| imgScale                         | double                    | 图像缩放因子。                             |
+| imgFrameBuilder                  | ImageFrameBuilder?        | 自定义图像帧构建器，可选。                 |
+| imgExcludeFromSemantics          | bool                      | 图像是否应排除在语义中，默认为false。      |
+| imgAlignment                     | AlignmentGeometry         | 图像在其框内的对齐方式。                   |
+| imgRepeat                        | ImageRepeat               | 图像如何重复。                             |
+| imgMatchTextDirection            | bool                      | 图像是否应与文本方向匹配。                 |
+| imgGaplessPlayback               | bool                      | 是否启用无间隙播放图像，默认为false。      |
+| imgFilterQuality                 | FilterQuality             | 图像的滤镜质量，默认为 FilterQuality.low。 |
+| imgIsAntiAlias                   | bool                      | 图像是否应抗锯齿。                         |
+| imgErrorBuilder                  | ImageErrorWidgetBuilder?  | 自定义图像错误小部件构建器，可选。         |
+| imgSemanticLabel                 | String?                   | 图像的语义标签，可选。                     |
+| imgWidth                         | double?                   | 图像的宽度，可选。                         |
+| imgHeight                        | double?                   | 图像的高度，可选。                         |
+| imgColor                         | Color?                    | 应用于图像的颜色，可选。                   |
+| imgOpacity                       | Animation<double>?        | 图像的不透明度，可选。                     |
+| imgColorBlendMode                | BlendMode?                | 应用于图像的混合模式，可选。               |
+| imgFit                           | BoxFit?                   | 图像在其框内的适应方式，可选。             |
+| imgCenterSlice                   | Rect?                     | 图像的中心切片，可选。                     |
+| imgHeaders                       | Map<String, String>?      | 用于网络图像请求的标头，可选。             |
+| imgCacheWidth                    | int?                      | 图像缓存的最大宽度，可选。                 |
+| imgCacheHeight                   | int?                      | 图像缓存的最大高度，可选。                 |
+| imgPackage                       | String?                   | 图像的包名称，可选。                       |
+
+
 ## API
 
 ### CarouselController 类
@@ -421,3 +612,17 @@ Carousel(
   currentIndicatorColor: Colors.green,
 ),
 ```
+
+### NetImgCarousel
+
+> 于 v1.0.0+1 添加。
+
+见上面文档描述。
+
+
+### AssetImgCarousel
+
+> 于 v1.0.0+1 添加。
+
+见上面文档描述。
+

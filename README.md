@@ -279,6 +279,199 @@ As you can see, because you can completely customize the carousel indicator and 
 
 This can be easily realized by integrating the corresponding video player module with this module.
 
+### Network Carousel
+
+> Added in v1.0.0+1.  
+
+A network carousel is a widely used form of carousel, especially in today's web applications, that displays a set of images in a cyclic manner. It is derived from the generic carousel class, `Carousel`, and is represented by the `NetImgCarousel` class. With `NetImgCarousel`, you can load a collection of images from URLs for a network carousel and customize various parameters related to images and the network.
+
+Here is an example of how to use the `NetImgCarousel` class.
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:awesome_carousel/carousels.dart' show NetImgCarousel;
+
+class NetImgCarouselExample extends StatelessWidget {
+  final List<String> imageUrls = [
+    'https://gitee.com/jacklee1995/example-pictures/raw/master/shoe/shoe1(1).png',
+    'https://gitee.com/jacklee1995/example-pictures/raw/master/shoe/shoe1(3).png',
+    'https://gitee.com/jacklee1995/example-pictures/raw/master/shoe/shoe1(5).png',
+    'https://gitee.com/jacklee1995/example-pictures/raw/master/shoe/shoe1(7).png',
+    'https://gitee.com/jacklee1995/example-pictures/raw/master/shoe/shoe1(2).png',
+  ];
+
+  NetImgCarouselExample({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: NetImgCarousel(
+        imageUrls,
+        height: 400.0,
+        indicatorColor: Colors.grey,
+        currentIndicatorColor: Colors.blue,
+        onUnitTapped: (index) {
+          // Carousel unit callback event
+          print('Tapped on unit $index');
+        },
+        onIndicatorTapped: (index) {
+          // Carousel indicator callback event
+          print('Tapped on indicator $index');
+        },
+      ),
+    );
+  }
+}
+```
+
+The running result of the code is as follows:
+
+![Alt text](./WeChat_IxjFbKajq3.gif)
+
+The `NetImgCarousel` class allows you to create network carousels with ease, making it convenient to display a collection of images from web URLs.
+
+The following table describes the parameters of the `netimgroom` constructor:
+
+| Parameter Name                     | Type                        | Default Value          | Description                                                                             |
+| ---------------------------------- | --------------------------- | ---------------------- | --------------------------------------------------------------------------------------- |
+| `imageUrls`                        | `List<String>`              |                        | List of network image URLs to be displayed in the carousel.                             |
+| `height`                           | `double`                    | `400.0`                | Height of the carousel component.                                                       |
+| `width`                            | `double`                    | `0.0`                  | Width of the carousel component.                                                        |
+| `useindicator`                     | `bool`                      | `true`                 | Whether to use indicators, defaults to `true`.                                          |
+| `onUnitTapped`                     | `FunctionWithAInt?`         |                        | Callback function when a unit in the carousel is clicked, optional.                     |
+| `onIndicatorTapped`                | `FunctionWithAInt?`         |                        | Callback function when an indicator is clicked, optional.                               |
+| `indicatorBuilder`                 | `FunctionIndicatorBuilder?` |                        | Custom indicator builder function, optional.                                            |
+| `indicatorColor`                   | `Color`                     | `Colors.white`         | Default indicator color.                                                                |
+| `currentIndicatorColor`            | `Color`                     | `Colors.blue`          | Color of the currently selected indicator.                                              |
+| `indicatorWidth`                   | `double`                    | `40.0`                 | Indicator width.                                                                        |
+| `indicatorHeight`                  | `double`                    | `26.0`                 | Indicator height.                                                                       |
+| `indicatorMargin`                  | `double`                    | `3.0`                  | Spacing between indicators.                                                             |
+| `indicatorToBottom`                | `double`                    | `10.0`                 | Distance of indicators from the bottom.                                                 |
+| `indicatorShape`                   | `BoxShape`                  | `BoxShape.rectangle`   | Default indicator shape.                                                                |
+| `pageSnapping`                     | `bool`                      | `true`                 | Whether to enable page snapping, defaults to `true`.                                    |
+| `padEnds`                          | `bool`                      | `true`                 | Whether to add extra pages at the beginning and end of the carousel, default is `true`. |
+| `clipBehavior`                     | `Clip`                      | `Clip.hardEdge`        | The behavior for the clip.                                                              |
+| `reverse`                          | `bool`                      | `false`                | Whether to reverse the order of items.                                                  |
+| `scrollDirection`                  | `Axis`                      | `Axis.horizontal`      | The axis along which the page view scrolls.                                             |
+| `controller`                       | `CarouselController?`       |                        | Carousel controller, optional.                                                          |
+| `disableIndicatorDefaultCallbacks` | `bool`                      | `false`                | Whether to disable default indicator callback functions.                                |
+| `imgScale`                         | `double`                    | `1.0`                  | Image scale factor, default is `1.0`.                                                   |
+| `imgFrameBuilder`                  | `ImageFrameBuilder?`        |                        | Image frame builder, optional.                                                          |
+| `imgLoadingBuilder`                | `ImageLoadingBuilder?`      |                        | Image loading builder, optional.                                                        |
+| `imgErrorBuilder`                  | `ImageErrorWidgetBuilder?`  |                        | Image error widget builder, optional.                                                   |
+| `imgExcludeFromSemantics`          | `bool`                      | `false`                | Whether to exclude the image from semantics, default is `false`.                        |
+| `imgSemanticLabel`                 | `String?`                   |                        | Image semantic label, optional.                                                         |
+| `imgWidth`                         | `double?`                   |                        | Image width, optional.                                                                  |
+| `imgHeight`                        | `double?`                   |                        | Image height, optional.                                                                 |
+| `imgColor`                         | `Color?`                    |                        | Image color, optional.                                                                  |
+| `imgOpacity`                       | `Animation<double>?`        |                        | Image opacity, optional.                                                                |
+| `imgColorBlendMode`                | `BlendMode?`                |                        | Image color blend mode, optional.                                                       |
+| `imgFit`                           | `BoxFit?`                   |                        | Image fit, optional.                                                                    |
+| `imgCenterSlice`                   | `Rect?`                     |                        | Image center slice, optional.                                                           |
+| `imgAlignment`                     | `AlignmentGeometry`         | `Alignment.center`     | Image alignment, optional.                                                              |
+| `imgRepeat`                        | `ImageRepeat`               | `ImageRepeat.noRepeat` | Image repeat mode, optional.                                                            |
+| `imgMatchTextDirection`            | `bool`                      | `false`                | Whether the image should match the text direction, optional.                            |
+| `imgGaplessPlayback`               | `bool`                      | `false`                | Whether to enable gapless playback for the image, optional.                             |
+| `imgFilterQuality`                 | `FilterQuality`             | `FilterQuality.low`    | Image filter quality, optional.                                                         |
+| `imgIsAntiAlias`                   | `bool`                      | `false`                | Whether the image should be anti-aliased, optional.                                     |
+| `imgHeaders`                       | `Map<String, String>?`      |                        | Headers for the network image, optional.                                                |
+| `imgCacheWidth`                    | `int?`                      |                        | Image cache width, optional.                                                            |
+| `imgCacheHeight`                   | `int?`                      |                        | Image cache height, optional.                                                           |
+
+### Local Image Carousel
+
+> Added in v1.0.0+1. 
+
+Local resource picture carousel is also a very common type of carousel. In Flutter, you need to configure the `assets` option of the `pubspec.yaml` file first to ensure that your pictures can be loaded normally.
+
+Here's a simple example:
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:awesome_carousel/img_carousels/assert_img_carousel.dart';
+
+class AssetImgCarouselExample extends StatelessWidget {
+  final List<String> assetImagePaths = [
+    'assets/image1.png',
+    'assets/image2.png',
+    'assets/image3.png',
+  ];
+
+  AssetImgCarouselExample({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: AssetImgCarousel(
+        assetImagePaths,
+        height: 400.0,
+        indicatorColor: Colors.grey,
+        currentIndicatorColor: Colors.blue,
+        indicatorShape: BoxShape.circle,
+        onUnitTapped: (index) {
+          print('Tapped on unit $index');
+        },
+        onIndicatorTapped: (index) {
+          print('Tapped on indicator $index');
+        },
+      ),
+    );
+  }
+}
+```
+
+The code produces the following result:
+
+![Alt text](./WeChat_wLFeQijQol.gif)
+
+The table below describes the parameters of the `AssetImgCarousel` constructor:
+
+| Parameter Name                   | Parameter Type            | Description                                                                           |
+| -------------------------------- | ------------------------- | ------------------------------------------------------------------------------------- |
+| assetImagePaths                  | List<String>              | List of asset image file paths for the carousel.                                      |
+| height                           | double                    | Height of the carousel component.                                                     |
+| width                            | double                    | Width of the carousel component.                                                      |
+| useindicator                     | bool                      | Whether to use indicators, defaults to true.                                          |
+| onUnitTapped                     | FunctionWithAInt?         | Callback function when a unit in the carousel is clicked, optional.                   |
+| onIndicatorTapped                | FunctionWithAInt?         | Callback function when an indicator is clicked, optional.                             |
+| indicatorBuilder                 | FunctionIndicatorBuilder? | Custom indicator builder function, optional.                                          |
+| indicatorColor                   | Color                     | Default indicator color.                                                              |
+| currentIndicatorColor            | Color                     | Color of the currently selected indicator.                                            |
+| indicatorWidth                   | double                    | Indicator width.                                                                      |
+| indicatorHeight                  | double                    | Indicator height.                                                                     |
+| indicatorMargin                  | double                    | Spacing between indicators.                                                           |
+| indicatorToBottom                | double                    | Distance of indicators from the bottom.                                               |
+| indicatorShape                   | BoxShape                  | Default indicator shape, defaults to a rectangle.                                     |
+| pageSnapping                     | bool                      | Whether to enable page snapping, defaults to true.                                    |
+| padEnds                          | bool                      | Whether to add extra pages at the beginning and end of the carousel, default is true. |
+| clipBehavior                     | Clip                      | The behavior for the clip.                                                            |
+| reverse                          | bool                      | Whether to reverse the order of items.                                                |
+| scrollDirection                  | Axis                      | The axis along which the page view scrolls.                                           |
+| controller                       | CarouselController?       | Carousel controller, optional.                                                        |
+| disableIndicatorDefaultCallbacks | bool                      | Whether to disable default indicator callback functions.                              |
+| imgScale                         | double                    | Image scale factor.                                                                   |
+| imgFrameBuilder                  | ImageFrameBuilder?        | Custom image frame builder, optional.                                                 |
+| imgExcludeFromSemantics          | bool                      | Whether the image should be excluded from semantics, default is false.                |
+| imgAlignment                     | AlignmentGeometry         | Alignment of the image within its frame.                                              |
+| imgRepeat                        | ImageRepeat               | How the image should repeat.                                                          |
+| imgMatchTextDirection            | bool                      | Whether the image should match the text direction.                                    |
+| imgGaplessPlayback               | bool                      | Whether to enable gapless playback of images, default is false.                       |
+| imgFilterQuality                 | FilterQuality             | The filter quality for the image, default is FilterQuality.low.                       |
+| imgIsAntiAlias                   | bool                      | Whether the image should be anti-aliased.                                             |
+| imgErrorBuilder                  | ImageErrorWidgetBuilder?  | Custom image error widget builder, optional.                                          |
+| imgSemanticLabel                 | String?                   | Semantic label for the image, optional.                                               |
+| imgWidth                         | double?                   | Image width, optional.                                                                |
+| imgHeight                        | double?                   | Image height, optional.                                                               |
+| imgColor                         | Color?                    | Color applied to the image, optional.                                                 |
+| imgOpacity                       | Animation<double>?        | Image opacity, optional.                                                              |
+| imgColorBlendMode                | BlendMode?                | Blend mode applied to the image, optional.                                            |
+| imgFit                           | BoxFit?                   | How the image fits within its frame, optional.                                        |
+| imgCenterSlice                   | Rect?                     | The center slice for the image, optional.                                             |
+| imgHeaders                       | Map<String, String>?      | Headers for network image requests, optional.                                         |
+| imgCacheWidth                    | int?                      | Maximum width for image caching, optional.                                            |
+| imgCacheHeight                   | int?                      | Maximum height for image caching, optional.                                           |
+| imgPackage                       | String?                   | Package name for the image, optional.                                                 |
+
 ## API
 
 ### Class CarouselController
@@ -430,3 +623,9 @@ Carousel(
   currentIndicatorColor: Colors.green,
 )
 ```
+
+### class NetImgCarousel
+
+> Added in v1.0.0+1.
+
+See above.

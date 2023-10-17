@@ -1,6 +1,6 @@
 name: awesome_carousel
 description: A Flutter plug-in aimed at providing various carousel widgets.
-version: 1.0.0
+version: 1.0.0+1
 
 repository: https://github.com/jacklee1995/flutter-carousels
 homepage: http://thispage.tech:9680/jclee1995/flutter-carousels.git
